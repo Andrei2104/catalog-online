@@ -17,7 +17,7 @@ const StudentsTable = (props) => {
                                 <td className="text-center border-[1px] border-black">
                                     <Link to={`students/${val.fullname}`} className="text-black">{val.fullname}</Link>
                                 </td>
-                                <td className="text-center border-[1px] border-black">TBD</td>
+                                <td className="text-center border-[1px] border-black">{val.grade}</td>
                             </tr>
                         )
                     })}

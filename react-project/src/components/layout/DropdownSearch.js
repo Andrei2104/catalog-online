@@ -13,14 +13,14 @@ const DropdownSearch = (props) => {
     async function fetchClasses() {
         try {
             const { data, error } = await supabase
-            .from('Classes')
-            .select('class');
+                .from('Classes')
+                .select('class');
 
             if (error) throw error;
 
             if (data !== null) {
                 data.forEach((entry) => {
-                    classOptions.push({label: entry.class})
+                    classOptions.push({ label: entry.class })
                 })
                 setClasses(classOptions);
             }
