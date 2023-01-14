@@ -1,12 +1,13 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import AuthContext from "../../store/auth-context";
 import supabase from "../../supabaseClient";
 
 const LoginForm = () => {
-    const [isLogin, setIsLogin] = useState(false);
     const userInputRef = useRef();
     const passwordInputRef = useRef();
     const navigate = useNavigate();
+    const authCtx = useContext(AuthContext);
 
     const submitHandler = async (event) => {
         event.preventDefault();
@@ -23,32 +24,16 @@ const LoginForm = () => {
         const { data, error } = await supabase.auth.signInWithPassword({
             email: email,
             password: password,
-        })
-
-        if (error) throw alert('Invalid username or password.')
-
-        localStorage.setItem('token', data.session.access_token)
-
-        setIsLogin({
-            islogin: true,
-            token: data.session.access_token
         });
 
-    };
+        if (error) throw alert('Invalid username or password.');
 
-    // const logoutHandler = async (event) => {
-    //     event.preventDefault();
-    //     if (isLogin) {
-    //         const { error } = await supabase.auth.signOut()
-    //     }
-    // }
-
-    useEffect(() => {
-        if (isLogin.islogin) {
-            localStorage.setItem('token', isLogin.token)
-            navigate('/');
+        if (data.session.access_token !== null) {
+            const expirationTime = new Date((new Date().getTime() + (+data.session.expires_in * 1000)));
+            authCtx.login(data.session.access_token, expirationTime.toISOString());
+            navigate('/', { replace: true });
         }
-    }, [isLogin, navigate]);
+    };
 
     return (
         <section className="m-auto my-16 max-w-sm rounded-md bg-blue-500 p-4 text-center text-white items-center">

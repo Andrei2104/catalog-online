@@ -1,18 +1,24 @@
-import { Fragment } from 'react';
+import { Fragment, useContext } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import './App.css';
 import NavHeader from './components/layout/NavHeader';
 import LoginForm from './components/Login/LoginForm';
 import Student from './components/Students/Student';
 import Students from './components/Students/Students';
+import AuthContext from './store/auth-context';
 
 function App() {
+  const authCtx = useContext(AuthContext);
+
   return <Fragment>
-    <NavHeader />
+    {authCtx.isLoggedIn && <NavHeader />}
     <Routes>
-      <Route path='/' element={<Students />} />
-      <Route path='/students/:student' element={<Student />} />
-      <Route path='/login' element={<LoginForm />} />
+      {authCtx.isLoggedIn && <Route path='/' element={<Students />} />}
+      {authCtx.isLoggedIn && <Route path='/students/:student' element={<Student />} />}
+      {!authCtx.isLoggedIn && <Route path='/login' element={<LoginForm />} />}
+      <Route path='*' element={
+        authCtx.isLoggedIn ?
+          <Students /> : <LoginForm />
+      }></Route>
     </Routes>
   </Fragment>
 }

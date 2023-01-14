@@ -35,7 +35,17 @@ const Students = () => {
             if (data !== null) {
                 data.filter(entry => entry.class === selectedClass).forEach((entry) => {
                     filteredStudents.push(entry)
+                    let counter = 0;
+                    let total = 0;
+                    Object.keys(entry.grades).forEach((key) => {
+                        total += entry.grades[key].reduce((a, b) => a + b, 0) / entry.grades[key].length;
+                        counter++;
+
+                    })
+                    entry.grade = (total / counter).toFixed(2);
+
                 })
+
                 setStudents(filteredStudents);
             }
         } catch (error) {
