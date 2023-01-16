@@ -1,5 +1,5 @@
 import { Fragment, useContext } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import NavHeader from './components/layout/NavHeader';
 import LoginForm from './components/Login/LoginForm';
 import Student from './components/Students/Student';
@@ -17,7 +17,7 @@ function App() {
       {!authCtx.isLoggedIn && <Route path='/login' element={<LoginForm />} />}
       <Route path='*' element={
         authCtx.isLoggedIn ?
-          <Students /> : <LoginForm />
+        <Navigate to='/' /> : <Navigate to='/login' />
       }></Route>
     </Routes>
   </Fragment>
