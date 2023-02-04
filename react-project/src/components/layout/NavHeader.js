@@ -4,23 +4,9 @@ import AuthContext from "../../store/auth-context";
 
 const NavHeader = () => {
     const navigate = useNavigate();
-    // const [showBtn, setShowBtn] = useState(null);
-    // let isShowBtn = false;
-
-    // useEffect(() => {
-    //     setShowBtn(localStorage.getItem('token'))
-    //     if(showBtn != null) {
-    //         isShowBtn = true;
-    //     }
-    // },)
     const authCtx = useContext(AuthContext);
 
-    //const isLoggedIn = authCtx.isLoggedIn;
-
     const logoutHandler = async () => {
-
-        //const { error } = await supabase.auth.signOut()
-
         authCtx.logout();
 
         navigate('/login', {replace: true});
@@ -28,7 +14,7 @@ const NavHeader = () => {
 
     return <header className="w-100 h-20 p-0 justify-between items-center flex bg-blue-500">
         <div>
-            <NavLink to='/' className='text-[2rem] text-white  hover:text-gray-300 active:text-gray-300 mx-[1.5rem]'>
+            <NavLink to='/' className='text-[2rem] text-white  hover:text-gray-300 active:text-gray-400 mx-[1.5rem]'>
                 Online Catalogue
             </NavLink>
         </div>
