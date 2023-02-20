@@ -38,7 +38,7 @@ const DropdownSearch = (props) => {
             <div className="text-center text-[1.75rem] m-2">Choose class:</div>
             <div className="text-center text-[1.5rem] m-10">
                 <Select
-                    className="w-[30rem] mx-auto "
+                    className="w-[30rem] mx-auto text-sky-600"
                     isClearable={true}
                     options={classes}
                     placeholder='Select...'
