@@ -37,8 +37,8 @@ const AddStudentForm = ({ onClick, items, selectedCls }) => {
     }
 
     return (
-        <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex items-center justify-center">
-            <section className="m-auto my-16 max-w-sm rounded-md bg-blue-500 p-4 text-white items-center">
+        <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex modal-middle">
+            <section className="m-auto my-16 max-w-sm rounded-md bg-blue-500 p-4 text-white">
                 <h1 className="text-center font-bold text-white">Add Student</h1>
                 <form onSubmit={handleFormChange}>
                     <div className="mb-2">
@@ -48,7 +48,7 @@ const AddStudentForm = ({ onClick, items, selectedCls }) => {
                             type='text'
                             id='fullname'
                             placeholder="Example: Ion Ion..."
-                            className="text-black rounded w-full p-1"
+                            className="text-black rounded w-full p-1 bg-white"
                             required
                             ref={nameInputRef}
                         />
@@ -61,7 +61,7 @@ const AddStudentForm = ({ onClick, items, selectedCls }) => {
                                         type='text'
                                         id='grades'
                                         placeholder="Example: 5,6,7..."
-                                        className="text-black rounded w-full p-1"
+                                        className="text-black rounded w-full p-1 bg-white"
                                         value={input.grades}
                                         onChange={event => handleFormChange(event, val, index)}
                                         required

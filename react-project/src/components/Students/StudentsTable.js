@@ -25,7 +25,7 @@ const StudentsTable = ({items}) => {
                             <tr key={key} className='border-[1px] border-black'>
                                 <td className="text-center border-[1px] border-black">{val.class}</td>
                                 <td className="text-center border-[1px] border-black">
-                                    <Link to={`students/${val.fullname}`} className="text-black">{val.fullname}</Link>
+                                    <Link to={`students/${val.fullname}`} className="text-black text-inherit">{val.fullname}</Link>
                                 </td>
                                 <td className="text-center border-[1px] border-black">{val.grade}</td>
                                 <td className="w-[5rem]">

@@ -73,6 +73,8 @@ const Student = () => {
             .from('Students')
             .update({ grades: newGrades })
             .eq('fullname', student)
+        
+        window.location.reload(true);
     }
 
     return (
